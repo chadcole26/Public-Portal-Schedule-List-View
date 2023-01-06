@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>~[text:psx.html.guardian.myschedule.my_schedule_]</title>
+		<link href="/images/schedule.css" rel="stylesheet" type="text/css" />
+		~[wc:guardian_header]
+
+		<h1>~[text:psx.html.guardian.myschedule.my_schedule] ~(studentname)</h1>
+		<!-- title -->
+
+		<!-- start student content -->
+		<!-- start of tabs -->
+		<ul class="tabs" role="tablist">
+			<li class="" tabindex="-1">
+				<a id="week-tab" role="tab" aria-selected="false" href="/guardian/myschedule.html"><span for="week-tab">~[text:psx.html.guardian.myschedulematrix.week_view]</span></a>
+			</li>
+			<li class=""  tabindex="-2">
+				<a id="matrix-tab" role="tab" aria-selected="false" href="/guardian/myschedulematrix.html""><span for="matrix-tab">~[text:psx.html.guardian.myschedulematrix.matrix_view]</span></a>
+			</li>
+			<!-- Add tab for List View -->
+			<!-- "/guardian/myschedulelist.html" -->
+			<li class="selected">
+				<a id="list-tab" role="tab" aria-selected="true" href="JavaScript:void(0);"><span for="list-tab">List View</span></a>
+			</li>
+		</ul>
+		<!-- end of tabs -->
+
+		<div class="box-round">
+			<table border="0" cellspacing="0" cellpadding="4">
+				<tr bgcolor="#f6f6f6">
+					<td class="bold">~[text:psx.html.admin_students.schedulelist.exp]</td>
+					<td class="bold">~[text:psx.html.admin_students.schedulelist.trm]</td>
+					<td class="bold">~[text:psx.html.admin_students.schedulelist.crssec]</td>
+					<td class="bold">~[text:psx.html.admin_students.schedulelist.course_name]</td>
+					<td class="bold">~[text:psx.html.admin_students.schedulelist.teacher]</td>
+					<td class="bold">~[text:psx.html.admin_students.schedulelist.room]</td>
+					<td class="bold">~[text:psx.html.admin_students.schedulelist.enroll]</td>
+					<td class="bold">~[text:psx.html.admin_students.schedulelist.leave]</td>
+				</tr>
+            ~[if.database.sql]
+                ~[tlist_sql;select CC.Expression,
+                        Terms.Abbreviation, Sections.TermID, Sections.SchoolID,
+                        Sections.Course_Number, Sections.Section_Number, Sections.ID,
+                        Courses.Course_Name, Teachers.LastFirst,
+                        Sections.Room, CC.DateEnrolled, CC.DateLeft
+                    from CC, Sections, Teachers, Courses, Terms
+                    where ABS(CC.SectionID) = Sections.ID
+                      and Sections.Teacher = Teachers.ID
+                      and lower(Courses.Course_Number) = lower(Sections.Course_Number)
+                      and Terms.ID = Sections.TermID and Terms.SchoolID = Sections.SchoolID
+                    ;alternatecolor;currentschedule]
+                <tr bgcolor="#edf3fe">
+                    <td>~(CC.Expression;t;externalExpression)</td>
+                    <td>~(Terms.Abbreviation;t)<!-- ~(Sections.TermID;l) ~(Sections.SchoolID;l) --></td>
+                    <td>~(Sections.Course_Number;t)-~(Sections.Section_Number;t)<!-- ~(Sections.ID;l) --></td>
+                    <td>~(Courses.Course_Name;t;codemap=CourseName;id=~(Sections.Course_Number;t))</td>
+                    <td>~(Teachers.LastFirst;t)</td>
+                    <td>~(Sections.Room;t)</td>
+                    <td>~(CC.DateEnrolled;d)</td>
+                    <td>~(CC.DateLeft;d)</td>
+                </tr>
+                [/tlist_sql]
+            [else]
+                <tr bgcolor="#edf3fe">~[tlist;cc;alternatecolor;currentschedule]
+                    <td>~(*class_expression frn="~(relsectionfrn)")</td>
+                    <td>~(relcctermabbrev)</td>
+                    <td>~(course_number)-~([03]section_number)</td>
+                    <td>~(coursename)</td>
+                    <td>~(teachername)</td>
+                    <td>~([03]room)</td>
+                    <td>~(dateenrolled)</td>
+                    <td>~(dateleft)</td>
+                </tr>
+            [/if]
+			</table>
+		<br>
+		</div>
+		<!-- end student content -->
+
+		<!-- end of title and student content -->
+		<input id="activeNav" type="hidden" value="#btn-mySchedule"/>
+		~[wc:guardian_footer]
+	</body>
+</html>

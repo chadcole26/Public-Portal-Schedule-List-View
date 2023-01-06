@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?><plugin xmlns="http://plugin.powerschool.pearson.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" description="Adds the schedule 'List View' to the public portal" name="Public Portal Sched List View" version="1.0" xsi:schemaLocation="http://plugin.powerschool.pearson.com plugin.xsd">
+<publisher name="Melissa Hayden-Raley">
+<contact email="mhaydenraley@maplerun.org"/>
+</publisher>
+</plugin>

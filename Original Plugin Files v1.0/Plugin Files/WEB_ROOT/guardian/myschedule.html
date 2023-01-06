@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>~[text:psx.html.guardian.myschedule.my_schedule_]</title>
+<link href="/images/schedule.css" rel="stylesheet" type="text/css" />
+~[wc:guardian_header]
+
+<h1>~[text:psx.html.guardian.myschedule.my_schedule] ~(studentname)</h1>
+<!-- title -->
+
+<!-- start student content -->
+<!-- start of tabs -->
+<ul class="tabs">
+	<li class="selected">
+        <a href="JavaScript:void(0);">~[text:psx.html.guardian.myschedule.week_view]</a>
+    </li>
+    <li class="">
+        <a href="/guardian/myschedulematrix.html">~[text:psx.html.guardian.myschedule.matrix_view]</a>
+    </li>
+    <!-- Add tab for List View -->
+	<li class="">
+        <a href="/guardian/myschedulelist.html">List View</a>   <!-- "/guardian/myschedulelist.html" -->
+    </li>
+</ul>
+<!-- end of tabs -->
+<div class="box-round group">
+<p class="feedback-info">~[text]psx.html.guardian.myschedule.enrollments_for_,param:~[schoolname][/text]</p>
+~[SetPostValue:skipDontPrintFilter=1]
+<table id="tableStudentSchedMatrix" class="gridSched" border="0" cellpadding="0" cellspacing="0">~[x:sched_weekschedule;timeinterval=60;tickinterval=60]
+<tr>
+<td class="scheduleHeader">&nbsp;</td>
+<td class="scheduleHeader"><b>[date;dateformat=DDDD]<br>[date;dateformat=STANDARD]</b></td>
+<td class="scheduleHeader">&nbsp;</td>
+</tr>
+<tr class="scheduleRow" valign="top">
+<td rowspan="[rowspan]" class="[tickclass]">[time]</td>
+<td rowspan="[rowspan]" class="[scheduleclass]">[relcoursename]&nbsp;[sectionTeacherDialogURL]<br>[relteachername]<br>[relroom]<br>[starttime] - [endtime]</td>
+<td rowspan="[rowspan]" class="[tickclass]">&nbsp;</td>
+</tr>
+</table>
+<br>
+</div>
+<!-- end student content -->
+
+<!-- end of title and student content -->
+<input id="activeNav" type="hidden" value="#btn-mySchedule"/>
+~[wc:guardian_footer]
+</body>
+</html>

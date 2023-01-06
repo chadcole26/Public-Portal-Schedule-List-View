@@ -1,0 +1,12 @@
+<ul class="tabs" role="tablist" id="listViewTab" style="display:none;">
+    <li class="" tabindex="-2">
+        <a id="list-tab" aria-selected="false" role="tab" href="/guardian/myschedulelist.html"><span for="list-tab">List View</span></a>
+    </li>
+</ul>
+
+<script type="text/javascript">
+
+	$j('#content-main .tabs:first').append( $j('#listViewTab').html() );
+	$j('#listViewTab').remove();
+
+</script>
